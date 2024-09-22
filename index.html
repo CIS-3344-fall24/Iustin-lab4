@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML</title>
+</head>
+<body>
+
+<!--paragraph element-->
+<p id="p1">Hello World!</p>
+
+<!--button element that changes `p1` to "Hello, DOM Manipulation!" using JavaScript"-->
+<button id="button">Change Text</button><br><br>
+
+<!--Forms-->
+<form id="userForm">
+    <!--Enter Name-->
+    <label for="fullName">Enter Full Name: </label>
+    <input type="text"
+           id="fullName"
+           name="name"
+           placeholder="Enter First Name and Last Name"
+           required><br><br>
+
+    <!--Enter Age-->
+    <label for="age">Enter your age:</label>
+    <input type="number"
+           id="age"
+           name="age"
+           placeholder="How old you are"
+           required><br><br>
+
+    <input type="submit" value="Submit">
+
+    <p id="greeting"></p> <!-- Message will appear here -->
+</form><br><br>
+
+<h2>JavaScript Data Types</h2>
+
+<p id="string"></p>
+<p id="number"></p>
+<p id="boolean"></p>
+<p id="null"></p>
+<p id="undefined"></p>
+<p id="bigint"></p><br><br>
+
+
+<!--Compare Strings-->
+<h2>Comparing Strings</h2>
+
+<div class="basicStrings">
+    <h3>Basic Strings: </h3>
+        <p id="comparison1"></p>
+        <p id="comparison2"></p>
+        <p id="comparison3"></p>
+</div>
+
+<div class="emptyString">
+    <h3>Empty Strings: </h3>
+    <p id="comparison4"></p>
+    <p id="comparison5"></p>
+</div>
+
+<div class="specialString">
+    <h3>Special Strings: </h3>
+    <p id="comparison6"></p>
+    <p id="comparison7"></p>
+    <p id="comparison8"></p>
+</div>
+
+<div class="numString">
+    <h3>Numbers as Strings: </h3>
+    <p id="comparison9"></p>
+    <p id="comparison10"></p>
+</div>
+
+<div class="whiteSpace">
+    <h3>Whitespace in Strings: </h3>
+    <p id="comparison11"></p>
+    <p id="comparison12"></p>
+    <p id="comparison13"></p>
+</div>
+
+<div class="mixedCase">
+    <h3>Mixed Case Comparisons: </h3>
+    <p id="comparison14"></p>
+    <p id="comparison15"></p>
+</div>
+
+<div class="punctuation">
+    <h3>Punctuation and Symbols: </h3>
+    <p id="comparison16"></p>
+    <p id="comparison17"></p>
+</div><br><br>
+
+<!--Assignment Operators-->
+<h2>Demonstrating Assignment Operators</h2>
+<p id="initial"></p>
+<p id="add"></p>
+<p id="subtract"></p>
+<p id="multiply"></p>
+<p id="divide"></p>
+<p id="remainder"></p><br><br>
+
+<!--Convert Celsius to Fahrenheit, and Fahrenheit to Celsius-->
+<h2>Convert between Celsius and Fahrenheit</h2>
+<p id="cToF"></p>
+<p id="fToC"></p>
+
+<!--create button to trigger conversion-->
+<button onclick="convertFahrenheitToCelsius()">Convert Fahrenheit to Celsius</button>
+
+<!--create script to change the text in paragraph-->
+<script>
+    // create 2 const variables for button and paragraph
+    const btn = document.getElementById('button');
+    const paragraph = document.getElementById('p1');
+    const name = document.getElementById('fullName').value; // Correct reference to fullName
+    const age = document.getElementById('age').value;
+
+    btn.addEventListener('click', function(){
+        paragraph.textContent = "Hello, DOM Manipulation!";
+    });
+
+    document.getElementById('userForm').addEventListener('submit', function (event){
+        event.preventDefault();
+
+        // display message
+        const message = document.getElementById('greeting');
+        message.textContent = `Hello, ${name}! You are ${age} years old.`;
+    });
+
+    let myString = "Iustin";
+    let myNumber = 24;
+    let myBoolean = true;
+    let myNull = null;
+    let myUndefined;
+    let myBigInt = BigInt(300);
+
+    // Display type and value for each variable
+    document.getElementById('string').textContent = `String: "${myString}" (${typeof myString})`;
+    document.getElementById('number').textContent = `Number: ${myNumber} (${typeof myNumber})`;
+    document.getElementById('boolean').textContent = `Boolean: ${myBoolean} (${typeof myBoolean})`;
+    document.getElementById('null').textContent = `Null: ${myNull} (${typeof myNull})`;
+    document.getElementById('undefined').textContent = `Undefined: ${myUndefined} (${typeof myUndefined})`;
+    document.getElementById('bigint').textContent = `BigInt: ${myBigInt} (${typeof myBigInt})`;
+
+    /**
+     * Compare Strings
+     * @type {string}
+     */
+    // string 1
+    let string1 = "apple";
+    let string2 = "orange";
+
+    let result1;
+    if (string1 === string2) {
+        result1 = `"${string1}" is equal to "${string2}"`;
+    } else if (string1 > string2) {
+        result1 = `"${string1}" is lexicographically greater than "${string2}"`;
+    } else {
+        result1 = `"${string1}" is lexicographically smaller than "${string2}"`;
+    }
+
+    // string 2
+    let string3 = "dog";
+    let string4 = "dog";
+
+    let result2;
+    if (string3 === string4) {
+        result2 = `"${string3}" is equal to "${string4}"`;
+    } else if (string3 > string4) {
+        result2 = `"${string3}" is lexicographically greater than "${string4}"`;
+    } else {
+        result2 = `"${string3}" is lexicographically smaller than "${string4}"`;
+    }
+
+    // string 3
+    let string5 = "banana";
+    let string6 = "Banana";
+
+    let result3;
+    if (string5 === string6) {
+        result3 = `"${string5}" is equal to "${string6}"`;
+    } else if (string5 > string6) {
+        result3 = `"${string5}" is lexicographically greater than "${string6}"`;
+    } else {
+        result3 = `"${string5}" is lexicographically smaller than "${string6}"`;
+    }
+
+    /**
+     * Compare Empty Strings
+     * @type {string}
+     */
+    // string 4
+    let emptyString1 = "";
+    let emptyString2 = "hello";
+
+    let result4;
+    if (emptyString1 === emptyString2) {
+        result4 = `"${emptyString1}" is equal to "${emptyString2}"`;
+    } else if (emptyString1 > emptyString2) {
+        result4 = `"${emptyString1}" is lexicographically greater than "${emptyString2}"`;
+    } else {
+        result4 = `"${emptyString1}" is lexicographically smaller than "${emptyString2}"`;
+    }
+
+    // string 5
+    let emptyString3 = "";
+    let emptyString4 = "";
+
+    let result5;
+    if (emptyString3 === emptyString4) {
+        result5 = `"${emptyString3}" is equal to "${emptyString4}"`;
+    } else if (emptyString3 > emptyString4) {
+        result5 = `"${emptyString3}" is lexicographically greater than "${emptyString4}"`;
+    } else {
+        result5 = `"${emptyString3}" is lexicographically smaller than "${emptyString4}"`;
+    }
+
+    // string 6
+    let specialChar1 = "@home";
+    let specialChar2 = "@work";
+
+    let result6;
+    if (specialChar1 === specialChar2) {
+        result6 = `"${specialChar1}" is equal to "${specialChar2}"`;
+    } else if (emptyString3 > specialChar2) {
+        result6 = `"${specialChar1}" is lexicographically greater than "${specialChar2}"`;
+    } else {
+        result6 = `"${specialChar1}" is lexicographically smaller than "${specialChar2}"`;
+    }
+
+    // string 7
+    let specialChar5 = "hello!";
+    let specialChar6 = "hello";
+
+    let result7;
+    if (specialChar5 === specialChar6) {
+        result7 = `"${specialChar5}" is equal to "${specialChar6}"`;
+    } else if (specialChar5 > specialChar6) {
+        result7 = `"${specialChar5}" is lexicographically greater than "${specialChar6}"`;
+    } else {
+        result7 = `"${specialChar5}" is lexicographically smaller than "${specialChar6}"`;
+    }
+
+    // string 8
+    let specialChar7 = "good$";
+    let specialChar8 = "good";
+
+    let result8;
+    if (specialChar7 === specialChar8) {
+        result8 = `"${specialChar7}" is equal to "${specialChar8}"`;
+    } else if (specialChar7 > specialChar8) {
+        result8 = `"${specialChar7}" is lexicographically greater than "${specialChar8}"`;
+    } else {
+        result8 = `"${specialChar7}" is lexicographically smaller than "${specialChar8}"`;
+    }
+
+    // string 9
+    let numString1 = "123";
+    let numString2 = "124";
+
+    let result9;
+    if (numString1 === numString2) {
+        result9 = `"${numString1}" is equal to "${numString2}"`;
+    } else if (numString1 > numString2) {
+        result9 = `"${numString1}" is lexicographically greater than "${numString2}"`;
+    } else {
+        result9 = `"${numString1}" is lexicographically smaller than "${numString2}"`;
+    }
+
+    // string 10
+    let numString3 = "99";
+    let numString4 = "100";
+
+    let result10;
+    if (numString3 === numString4) {
+        result10 = `"${numString3}" is equal to "${numString4}"`;
+    } else if (numString3 > numString4) {
+        result10 = `"${numString3}" is lexicographically greater than "${numString4}"`;
+    } else {
+        result10 = `"${numString3}" is lexicographically smaller than "${numString4}"`;
+    }
+
+    // string 11
+    let whiteSpace1 = " space";
+    let whiteSpace2 = "space";
+
+    let result11;
+    if (whiteSpace1 === whiteSpace2) {
+        result11 = `"${whiteSpace1}" is equal to "${whiteSpace2}"`;
+    } else if (whiteSpace1 > whiteSpace2) {
+        result11 = `"${whiteSpace1}" is lexicographically greater than "${whiteSpace2}"`;
+    } else {
+        result11 = `"${whiteSpace1}" is lexicographically smaller than "${whiteSpace2}"`;
+    }
+
+    // string 12
+    let whiteSpace3 = "space ";
+    let whiteSpace4 = "space";
+
+    let result12;
+    if (whiteSpace3 === whiteSpace4) {
+        result12 = `"${whiteSpace3}" is equal to "${whiteSpace4}"`;
+    } else if (whiteSpace3 > whiteSpace4) {
+        result12 = `"${whiteSpace3}" is lexicographically greater than "${whiteSpace4}"`;
+    } else {
+        result12 = `"${whiteSpace3}" is lexicographically smaller than "${whiteSpace4}"`;
+    }
+
+    // string 13
+    let whiteSpace5 = "hello ";
+    let whiteSpace6 = "hello";
+
+    let result13;
+    if (whiteSpace5 === whiteSpace6) {
+        result13 = `"${whiteSpace5}" is equal to "${whiteSpace6}"`;
+    } else if (whiteSpace5 > whiteSpace6) {
+        result13 = `"${whiteSpace5}" is lexicographically greater than "${whiteSpace6}"`;
+    } else {
+        result13 = `"${whiteSpace5}" is lexicographically smaller than "${whiteSpace6}"`;
+    }
+
+    // string 14
+    let mixedCase1 = "JavaScript";
+    let mixedCase2 = "javascript";
+
+    let result14;
+    if (mixedCase1 === mixedCase2) {
+        result14 = `"${mixedCase1}" is equal to "${mixedCase2}"`;
+    } else if (whiteSpace5 > mixedCase2) {
+        result14 = `"${mixedCase1}" is lexicographically greater than "${mixedCase2}"`;
+    } else {
+        result14 = `"${mixedCase1}" is lexicographically smaller than "${mixedCase2}"`;
+    }
+
+    // string 15
+    let mixedCase3 = "Hello";
+    let mixedCase4 = "HELLO";
+
+    let result15;
+    if (mixedCase3 === mixedCase4) {
+        result15 = `"${mixedCase3}" is equal to "${mixedCase4}"`;
+    } else if (mixedCase3 > mixedCase2) {
+        result15 = `"${mixedCase3}" is lexicographically greater than "${mixedCase4}"`;
+    } else {
+        result15 = `"${mixedCase3}" is lexicographically smaller than "${mixedCase4}"`;
+    }
+
+    // string 16
+    let punctuation1 = "hello.";
+    let punctuation2 = "hello!";
+
+    let result16;
+    if (punctuation1 === punctuation2) {
+        result16 = `"${punctuation1}" is equal to "${punctuation2}"`;
+    } else if (punctuation1 > punctuation2) {
+        result16 = `"${punctuation1}" is lexicographically greater than "${punctuation2}"`;
+    } else {
+        result16 = `"${punctuation1}" is lexicographically smaller than "${punctuation2}"`;
+    }
+
+    // string 16
+    let punctuation3 = "test123";
+    let punctuation4 = "test_123";
+
+    let result17;
+    if (punctuation3 === punctuation4) {
+        result17 = `"${punctuation3}" is equal to "${punctuation2}"`;
+    } else if (punctuation3 > punctuation4) {
+        result17 = `"${punctuation3}" is lexicographically greater than "${punctuation4}"`;
+    } else {
+        result17 = `"${punctuation3}" is lexicographically smaller than "${punctuation4}"`;
+    }
+
+    document.getElementById('comparison1').textContent = result1;
+    document.getElementById('comparison2').textContent = result2;
+    document.getElementById('comparison3').textContent = result3;
+    document.getElementById('comparison4').textContent = result4;
+    document.getElementById('comparison5').textContent = result5;
+    document.getElementById('comparison6').textContent = result6;
+    document.getElementById('comparison7').textContent = result7;
+    document.getElementById('comparison8').textContent = result8;
+    document.getElementById('comparison9').textContent = result9;
+    document.getElementById('comparison10').textContent = result10;
+    document.getElementById('comparison11').textContent = result11;
+    document.getElementById('comparison12').textContent = result12;
+    document.getElementById('comparison13').textContent = result13;
+    document.getElementById('comparison14').textContent = result14;
+    document.getElementById('comparison15').textContent = result15;
+    document.getElementById('comparison16').textContent = result16;
+    document.getElementById('comparison17').textContent = result17;
+
+    /**
+     *  Assignment Operators
+     */
+    let x = 100;
+    document.getElementById('initial').textContent = `x = ${x}`;
+
+    // Addition
+    x += 50;
+    document.getElementById('add').textContent = `100 + 50 = ${x}`;
+
+    // Subtraction
+    x -= 30;
+    document.getElementById('subtract').textContent = `150 - 30 = ${x}`;
+
+    // Multiply
+    x *= 2;
+    document.getElementById('multiply').textContent = `120 * 2 = ${x}`;
+
+    // Division
+    x /= 5;
+    document.getElementById('divide').textContent = `240 / 5 = ${x}`;
+
+    // Remainder
+    x %= 7;
+    document.getElementById('remainder').textContent = `48 % 7 = ${x}`;
+
+
+    /**
+     * Call Celsius to Fahrenheit and vice versa
+     */
+
+    // celsius to fahrenheit func.
+    function cToF(celsius){
+        return (celsius * 9/5) + 32;
+    }
+
+    // call the Celsius to Fahrenheit function and display the result
+    let celsiusVal = 25;
+    let fahrenheitValue = cToF(celsiusVal);
+    document.getElementById('cToF').textContent = `Celsius to Fahrenheit: ${celsiusVal} = ${fahrenheitValue}`;
+</script>
+<script src="script.js"></script>
+
+</body>
+</html>
